@@ -1,0 +1,271 @@
+ogin as: sekr
+sekr@213.184.8.36's password:
+Linux bad2 4.10.17-1-pve #1 SMP PVE 4.10.17-16 (Tue, 11 Jul 2017 09:55:44 +0200)                                                                        x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Wed Oct 20 15:23:43 2021 from 213.184.8.151
+sekr@bad2:~$ mysql -u sekr -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'sekr'@'localhost' (using password: Y                                                                       ES)
+sekr@bad2:~$ mysql -u sekr -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'sekr'@'localhost' (using password: Y                                                                       ES)
+sekr@bad2:~$ mysql -u sekr -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 788
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create table postac
+    -> id_postaci
+    -> nazwa
+    -> rodzaj
+    -> data_ur
+    -> wiek
+    ->
+    ->
+    ->
+    -> create table
+    ->
+    ->
+    ->
+    -> .//
+    -> ../
+    -> .
+    -> ,
+    -> create table id_postaci primary key, auto_increment;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'id_postaci
+nazwa
+rodzaj
+data_ur
+wiek
+
+
+
+create table
+
+
+
+.//
+../
+.
+,
+create table' at line 2
+mysql> create table postac (
+    -> id int,
+    -> Imie VARCHAR(200),
+    -> Nazwisko Varchar(200)
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> create table id_postaci primary key, auto_increment;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key, auto_increment' at line 1
+mysql> mysql -u sekr -p
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql -u sekr -p' at line 1
+mysql> drop table postac;
+ERROR 1046 (3D000): No database selected
+mysql> show postac;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'postac' at line 1
+mysql> show table status;
+ERROR 1046 (3D000): No database selected
+mysql> create table id_postaci primary key, auto_increment;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key, auto_increment' at line 1
+mysql> Create table postac (
+    -> id_postaci int auto_increment primary key,
+    -> nazwa varchar(40) not null,
+    -> rodzaj enum('wiking', 'ptak', 'kobieta'),
+    -> data_ur date,
+    -> wiek int unsigned);
+ERROR 1046 (3D000): No database selected
+mysql> Create table postac7 (
+    -> id_postaci int auto_increment primary key,
+    -> nazwa varchar(40) not null,
+    -> rodzaj enum('wiking', 'ptak', 'kobieta'),
+    -> data_ur date,
+    -> wiek int unsigned);
+ERROR 1046 (3D000): No database selected
+mysql> use sekr;
+Database changed
+mysql> Create table postac7 ( id_postaci int auto_increment primary key, nazwa varchar(40) not null, rodzaj enum('wiking', 'ptak', 'kobieta'), data_ur
+date, wiek int unsigned);
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_sekr |
++----------------+
+| postac7        |
++----------------+
+1 row in set (0.01 sec)
+
+mysql> insert into postac7 VALUES(default, 'Bjorn', 'wiking', '1997.02.21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into postac7 VALUES(default, 'Bjorn', wiking, '1997.02.21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into postac7 VALUES(default, 'Bjorn', wiking, 1997.02.21, 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.21, 21' at line 1
+mysql> insert into postac7 VALUES(default, 'Bjorn', 'wiking', '1997.02.21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into postac7(nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Bjorn', 'wiking', '1997.02.21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into postac7(nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Bjorn', 'wiking', '1997-02-21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into postac7  VALUES('1', 'Bjorn', '1', '1997-02-21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into postac7  VALUES(1, 'Bjorn', 1, '1997-02-21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into postac7  VALUES('1', 'Bjorn', '1', '1997-02-21', '21';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into postac7 VALUES('1', 'Bjorn', '1', '1997-02-21', '21';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show tables;
++----------------+
+| Tables_in_sekr |
++----------------+
+| postac7        |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> insert into postac7 VALUES('1', 'Bjorn', '1', '1997-02-21', '21');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into postac7 VALUES('2', 'Drozd', '2', '1897-05-01', '29');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into postac7 VALUES('3', 'Tesciowa', '3', '1844-12-31', '18');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>     -> wiek int unsigned);
+| postac7        |
++----------------+
+1 row in set (0.01 sec)
+
+mysql> insert into postac7 VALUES(default, 'Bjorn', 'wiking', '1997.02.21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> wiek int unsigned)' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into postac7 VALUES(default, 'Bjorn', wiking, '1997.02.21', 21;
+mysql> ERROR 1046 (3D000): No database selected
+    -> mysql> use sekr;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into postac7(nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Bjorn', 'wiking', '1997-02-21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1046 (3D000): No database selected
+mysql> use sekr' at line 1
+mysql> Database changed
+    -> mysql> Create table postac7 ( id_postaci int auto_increment primary key, nazwa varchar(40) not null, rodzaj enum('wiking', 'ptak', 'kobieta'), data_ur
+    -> date, wiek int unsigned);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Database changed
+mysql> Create table postac7 ( id_postaci int auto_increment pri' at line 1
+mysql> Query OK, 0 rows affected (0.10 sec)
+    ->
+    -> mysql> show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 0 rows affected (0.10 sec)
+
+mysql> show tables' at line 1
+mysql> +----------------+
+    -> | Tables_in_sekr |
+    -> +----------------+
+    -> | postac7        |
+    -> +----------------+
+    -> 1 row in set (0.01 sec)
+    ->
+    -> mysql> insert into postac7 VALUES(default, 'Bjorn', 'wiking', '1997.02.21', 21;
+mysql> insert into postac7 VALUES('1', 'Bjorn', '1', '1997-02-21', '21';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> shoERROR 1064 (42000): w tables;
++----------------+
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+----------------+
+| Tables_in_sekr |
++----------------+
+| postac7        |
++---' at line 1| Tables_in_sekr |
++----------------+
+| postac7        |
+
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> insert into postac7 VALUES(default, 'Bjorn', wiking, '1997.02.21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+
+mysql> insert into postac7 VALUES('2', 'Drozd', '2', '1897-05-01', '29');
+Query OK, 1 row affected (0.03 sec)
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+
+    -> mysql> insert into postac7 VALUES(default, 'Bjorn', wiking, 1997.02.21, 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.21, 21' at line 1
+Query OK, 1 row affected (0.00 sec)
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> insert into postac7 VALUES(default, 'Bjorn', 'wiking', '1997.02.21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> insert into postac7(nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Bjorn', 'wiking', '1997.02.21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> insert into postac7(nazwa, rodzaj, data_ur, wiek) VALUES(default, 'Bjorn', 'wiking', '1997-02-21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> insert into postac7  VALUES('1', 'Bjorn', '1', '1997-02-21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> insert into postac7  VALUES(1, 'Bjorn', 1, '1997-02-21', 21;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> insert into postac7  VALUES('1', 'Bjorn', '1', '1997-02-21', '21';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> insert into postac7 VALUES('1', 'Bjorn', '1', '1997-02-21', '21';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ERROR 1064 (42000): You have an error in your SQL syntax' at line 1
+    -> mysql> show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'the manual that corresponds to your MySQL server version for the right syntax to' at line 1
+mysql> +----------------+
+    -> | Tables_in_sekr |
+    -> +----------------+
+    -> | postac7        |
+    -> +----------------+
+    -> 1 row in set (0.00 sec)
+    ->
+    -> mysql> insert into postac7 VALUES('1', 'Bjorn', '1', '1997-02-21', '21');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+----------------+
+| Tables_in_sekr |
++----------------+
+| postac7        |
++---' at line 1
+mysql> Query OK, 1 row affected (0.11 sec)
+    ->
+    -> mysql> insert into postac7 VALUES('2', 'Drozd', '2', '1897-05-01', '29');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into postac7 VALUES('2', 'Dro' at line 1
+mysql> Query OK, 1 row affected (0.03 sec)
+    ->
+    -> mysql> insert into postac7 VALUES('3', 'Tesciowa', '3', '1844-12-31', '18');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into postac7 VALUES('3', 'Tes' at line 1
+mysql> Query OK, 1 row affected (0.00 sec)
+    ->
+    -> mysql>
+    ->
