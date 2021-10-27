@@ -1,4 +1,4 @@
-ogin as: sekr
+login as: sekr
 sekr@213.184.8.36's password:
 Linux bad2 4.10.17-1-pve #1 SMP PVE 4.10.17-16 (Tue, 11 Jul 2017 09:55:44 +0200)                                                                        x86_64
 
