@@ -1,0 +1,302 @@
+login as: sekr
+sekr@uwm-a008-36.uwm.edu.pl's password:
+Linux bad2 4.10.17-1-pve #1 SMP PVE 4.10.17-16 (Tue, 11 Jul 2017 09:55:44 +0200)                                                                                                      x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Tue Nov 30 20:22:26 2021 from 83.24.58.5
+sekr@bad2:~$ mysql -u sekr -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2594
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use sekr;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> CREATE TABLE przetwory(
+    -> id_przetworu PRIMARY KEY autoincrement,
+    -> rok_produkcji int(4),
+    -> id_wykonawcy int(4),
+    -> zawartosc varchar(50),
+    -> dodatek varchar(50) DEFAULT 'papryczka chilli',
+    -> id_konsumenta int(4),
+    -> FOREIGN KEY (id_wykonawcy) REFERENCES postac,
+    -> FOREIGN KEY (id_konsumenta) REFERENCES postac);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that                                                                                                      corresponds to your MySQL server version for the right syntax to use near 'PRIMA                                                                                                     RY KEY autoincrement,
+rok_produkcji int(4),
+id_wykonawcy int(4),
+zawartosc ' at line 2
+mysql> CREATE TABLE przetwory( id_przetworu PRIMARY KEY auto_increment, rok_prod                                                                                                     ukcji int(4), id_wykonawcy int(4), zawartosc varchar(50), dodatek varchar(50) DE                                                                                                     FAULT 'papryczka chilli', id_konsumenta int(4), FOREIGN KEY (id_wykonawcy) REFER                                                                                                     ENCES postac, FOREIGN KEY (id_konsumenta) REFERENCES postac);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that                                                                                                      corresponds to your MySQL server version for the right syntax to use near 'PRIMA                                                                                                     RY KEY auto_increment, rok_produkcji int(4), id_wykonawcy int(4), zawartosc' at                                                                                                      line 1
+mysql> CREATE TABLE przetwory( id_przetworu PRIMARY KEY auto_increment, rok_prod                                                                                                     ukcji int(4), id_wykonawcy int(4), zawartosc varchar(50), dodatek varchar(50), i                                                                                                     d_konsumenta int(4), FOREIGN KEY (id_wykonawcy) REFERENCES postac, FOREIGN KEY (                                                                                                     id_konsumenta) REFERENCES postac);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that                                                                                                      corresponds to your MySQL server version for the right syntax to use near 'PRIMA                                                                                                     RY KEY auto_increment, rok_produkcji int(4), id_wykonawcy int(4), zawartosc' at                                                                                                      line 1
+mysql> CREATE TABLE przetwory( id_przetworu PRIMARY KEY auto_increment, rok_prod                                                                                                     ukcji int(4), id_wykonawcy int(4), zawartosc varchar(50), dodatek varchar(50), i                                                                                                     d_konsumenta int(4), FOREIGN KEY (id_wykonawcy) REFERENCES postac(id_postaci) ON                                                                                                      DELETE CASCADE, FOREIGN KEY (id_konsumenta) REFERENCES postac);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that                                                                                                      corresponds to your MySQL server version for the right syntax to use near 'PRIMA                                                                                                     RY KEY auto_increment, rok_produkcji int(4), id_wykonawcy int(4), zawartosc' at                                                                                                      line 1
+mysql> CREATE TABLE przetwory( id_przetworu PRIMARY KEY auto_increment, rok_prod                                                                                                     ukcji int(4) unsigned, id_wykonawcy int(4), zawartosc varchar(50), dodatek varch
+ar(50), id_konsumenta int(4), FOREIGN KEY (id_wykonawcy) REFERENCES postac(id_po
+staci) ON DELETE CASCADE, FOREIGN KEY (id_konsumenta) REFERENCES postac(id_posta                                                                                                     ci) ON DELETE CASCADE);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that                                                                                                      corresponds to your MySQL server version for the right syntax to use near 'PRIMA                                                                                                     RY KEY auto_increment, rok_produkcji int(4) unsigned, id_wykonawcy int(4), ' at                                                                                                      line 1
+mysql> CREATE TABLE przetwory( id_przetworu int(11) PRIMARY KEY auto_increment,
+rok_produkcji int(4) unsigned, id_wykonawcy int(4), zawartosc varchar(50), dodat                                                                                                     ek varchar(50), id_konsumenta int(4), FOREIGN KEY (id_wykonawcy) REFERENCES post                                                                                                     ac(id_postaci) ON DELETE CASCADE, FOREIGN KEY (id_konsumenta) REFERENCES postac(                                                                                                     id_postaci) ON DELETE CASCADE);
+Query OK, 0 rows affected, 4 warnings (1.28 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_sekr |
++----------------+
+| izba           |
+| postac         |
+| przetwory      |
+| walizka        |
++----------------+
+4 rows in set (0.04 sec)
+
+mysql> ALTER TABLE przetwory ALTER COLUMN dodatek SET DEFAULT 'papryczka chilli'                                                                                                     ;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE przetwory ALTER COLUMN  rok_produkcji SET DEFAULT 1654;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO przetwory VALUES(1, default, 1, 'Bigos z papryczka', default,                                                                                                      3);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT * FROM przetwory;
++--------------+---------------+--------------+-------------------+-------------                                                                                                     -----+---------------+
+| id_przetworu | rok_produkcji | id_wykonawcy | zawartosc         | dodatek                                                                                                               | id_konsumenta |
++--------------+---------------+--------------+-------------------+-------------                                                                                                     -----+---------------+
+|            1 |          1654 |            1 | Bigos z papryczka | papryczka ch                                                                                                     illi |             3 |
++--------------+---------------+--------------+-------------------+-------------                                                                                                     -----+---------------+
+1 row in set (0.00 sec)
+
+mysql> mysql> SELECT * FROM przetwory;
++--------------+---------------+--------------+-------------------+------------------+---------------+
+| id_przetworu | rok_produkcji | id_wykonawcy | zawartosc         | dodatek          | id_konsumenta |
++--------------+---------------+--------------+-------------------+------------------+---------------+
+|            1 |          1654 |            1 | Bigos z papryczka | papryczka chilli |             3 |
++--------------+---------------+--------------+-------------------+------------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_sekr |
++----------------+
+| izba           |
+| postac         |
+| przetwory      |
+| walizka        |
++----------------+
+4 rows in set (0.09 sec)
+
+mysql> SELECT * FROM postac;
++------------+----------+---------+------------+------+
+| id_postaci | nazwa    | rodzaj  | data_ur    | wiek |
++------------+----------+---------+------------+------+
+|          1 | Bjorn    | wiking  | 1992-02-11 |   93 |
+|          2 | Drozd    | ptak    | 1992-12-21 |   44 |
+|          3 | Tesciowa | kobieta | 1929-04-20 |   88 |
++------------+----------+---------+------------+------+
+3 rows in set (0.13 sec)
+
+mysql> INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES('Wiking1', 'wiking', '1930-02-22', 22);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES('Wiking2', 'wiking', '1970-03-12', 72);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES('Wiking3', 'wiking', '1970-03-12', 72);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES('Wiking4', 'wiking', '1970-03-12', 72);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES('Wiking5', 'wiking', '1970-03-12', 72);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> CREATE TABLE statek(
+    -> nazwa statku varchar(50) PRIMARY KEY,
+    -> rodzaj enum('lotniskowiec', 'pasazerski'),
+    -> data_wodowania date,
+    -> max_ladownosc int unsigned);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server ver                                                                 sion for the right syntax to use near 'statku varchar(50) PRIMARY KEY,
+rodzaj enum('lotniskowiec', 'pasazerski'),
+data_' at line 2
+mysql> CREATE TABLE statek( nazwa statku varchar(50) PRIMARY KEY, rodzaj enum('lotniskowiec', 'pasazerski'), data_wo                                                                 dowania date, max_ladownosc int(11) unsigned);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server ver                                                                 sion for the right syntax to use near 'statku varchar(50) PRIMARY KEY, rodzaj enum('lotniskowiec', 'pasazerski'), da                                                                 ta_' at line 1
+mysql> CREATE TABLE statek( nazwa_statku varchar(50) PRIMARY KEY, rodzaj enum('lotniskowiec', 'pasazerski'), data_wo                                                                 dowania date, max_ladownosc int(11) unsigned);
+Query OK, 0 rows affected, 1 warning (0.46 sec)
+
+mysql> INSERT INTO statek VALUES('Tytanic', 'pasazerski', '1990-01-10', 50);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO statek VALUES('Ubot', 'lotniskowiec', '1951-04-19', 200);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> ALTER TABLE statek ADD COLUMN funkcja varchar(50);
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM statek;
++--------------+--------------+----------------+---------------+---------+
+| nazwa_statku | rodzaj       | data_wodowania | max_ladownosc | funkcja |
++--------------+--------------+----------------+---------------+---------+
+| Tytanic      | pasazerski   | 1990-01-10     |            50 | NULL    |
+| Ubot         | lotniskowiec | 1951-04-19     |           200 | NULL    |
++--------------+--------------+----------------+---------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE statek DROP;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server ver                                                                 sion for the right syntax to use near '' at line 1
+mysql> ALTER TABLE DROP COLUMN statek;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server ver                                                                 sion for the right syntax to use near 'DROP COLUMN statek' at line 1
+mysql> ALTER TABLE statek DROP COLUMN funkcja;
+Query OK, 0 rows affected (1.33 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM statek;
++--------------+--------------+----------------+---------------+
+| nazwa_statku | rodzaj       | data_wodowania | max_ladownosc |
++--------------+--------------+----------------+---------------+
+| Tytanic      | pasazerski   | 1990-01-10     |            50 |
+| Ubot         | lotniskowiec | 1951-04-19     |           200 |
++--------------+--------------+----------------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE postac ADD COLUMN funkcja varchar(50);
+Query OK, 0 rows affected (1.28 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM postac;
++------------+----------+---------+------------+------+---------+
+| id_postaci | nazwa    | rodzaj  | data_ur    | wiek | funkcja |
++------------+----------+---------+------------+------+---------+
+|          1 | Bjorn    | wiking  | 1992-02-11 |   93 | NULL    |
+|          2 | Drozd    | ptak    | 1992-12-21 |   44 | NULL    |
+|          3 | Tesciowa | kobieta | 1929-04-20 |   88 | NULL    |
+|          4 | Wiking1  | wiking  | 1930-02-22 |   22 | NULL    |
+|          5 | Wiking2  | wiking  | 1970-03-12 |   72 | NULL    |
+|          6 | Wiking3  | wiking  | 1970-03-12 |   72 | NULL    |
+|          7 | Wiking4  | wiking  | 1970-03-12 |   72 | NULL    |
+|          8 | Wiking5  | wiking  | 1970-03-12 |   72 | NULL    |
++------------+----------+---------+------------+------+---------+
+8 rows in set (0.00 sec)
+
+mysql> UPDATE postac SET funkcja = 'kapitan' WHERE nazwa='Bjorn';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM postac;
++------------+----------+---------+------------+------+---------+
+| id_postaci | nazwa    | rodzaj  | data_ur    | wiek | funkcja |
++------------+----------+---------+------------+------+---------+
+|          1 | Bjorn    | wiking  | 1992-02-11 |   93 | kapitan |
+|          2 | Drozd    | ptak    | 1992-12-21 |   44 | NULL    |
+|          3 | Tesciowa | kobieta | 1929-04-20 |   88 | NULL    |
+|          4 | Wiking1  | wiking  | 1930-02-22 |   22 | NULL    |
+|          5 | Wiking2  | wiking  | 1970-03-12 |   72 | NULL    |
+|          6 | Wiking3  | wiking  | 1970-03-12 |   72 | NULL    |
+|          7 | Wiking4  | wiking  | 1970-03-12 |   72 | NULL    |
+|          8 | Wiking5  | wiking  | 1970-03-12 |   72 | NULL    |
++------------+----------+---------+------------+------+---------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE postac ADD FOREIGN KEY (statek) REFERENCES statek(nazwa_statku);
+ERROR 1072 (42000): Key column 'statek' doesn't exist in table
+mysql> ALTER TABLE postac ADD COLUMN statek varchar(50);
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE postac ADD FOREIGN KEY (statek) REFERENCES statek(nazwa_statku);
+Query OK, 8 rows affected (0.89 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM postac;
++------------+----------+---------+------------+------+---------+--------+
+| id_postaci | nazwa    | rodzaj  | data_ur    | wiek | funkcja | statek |
++------------+----------+---------+------------+------+---------+--------+
+|          1 | Bjorn    | wiking  | 1992-02-11 |   93 | kapitan | NULL   |
+|          2 | Drozd    | ptak    | 1992-12-21 |   44 | NULL    | NULL   |
+|          3 | Tesciowa | kobieta | 1929-04-20 |   88 | NULL    | NULL   |
+|          4 | Wiking1  | wiking  | 1930-02-22 |   22 | NULL    | NULL   |
+|          5 | Wiking2  | wiking  | 1970-03-12 |   72 | NULL    | NULL   |
+|          6 | Wiking3  | wiking  | 1970-03-12 |   72 | NULL    | NULL   |
+|          7 | Wiking4  | wiking  | 1970-03-12 |   72 | NULL    | NULL   |
+|          8 | Wiking5  | wiking  | 1970-03-12 |   72 | NULL    | NULL   |
++------------+----------+---------+------------+------+---------+--------+
+8 rows in set (0.00 sec)
+
+mysql> UPDATE postac SET statek='Statek piracki' WHERE nazwa='Bjorn';
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`sekr`.`postac`, CONSTRAINT `postac_ibfk_1` FOREIGN KEY (`statek`) REFERENCES `statek` (`nazwa_statku`))
+mysql> UPDATE postac SET statek='lotniskowiec' WHERE nazwa='Bjorn';
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`sekr`.`postac`, CONSTRAINT `postac_ibfk_1` FOREIGN KEY (`statek`) REFERENCES `statek` (`nazwa_statku`))
+mysql> UPDATE postac SET statek='Lotniskowiec' WHERE nazwa='Bjorn';
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`sekr`.`postac`, CONSTRAINT `postac_ibfk_1` FOREIGN KEY (`statek`) REFERENCES `statek` (`nazwa_statku`))
+mysql> UPDATE postac SET statek='Tytanic' WHERE nazwa='Bjorn';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE postac SET statek='Tytanic' WHERE nazwa='Drozd';
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE postac SET statek='Tytanic' WHERE nazwa='Wiking1';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE postac SET statek='Tytanic' WHERE nazwa='Wiking2';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE postac SET statek='Tytanic' WHERE nazwa='Wiking3';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE postac SET statek='Tytanic' WHERE nazwa='Wiking4';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE postac SET statek='Tytanic' WHERE nazwa='Wiking5';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM postac;
++------------+----------+---------+------------+------+---------+---------+
+| id_postaci | nazwa    | rodzaj  | data_ur    | wiek | funkcja | statek  |
++------------+----------+---------+------------+------+---------+---------+
+|          1 | Bjorn    | wiking  | 1992-02-11 |   93 | kapitan | Tytanic |
+|          2 | Drozd    | ptak    | 1992-12-21 |   44 | NULL    | Tytanic |
+|          3 | Tesciowa | kobieta | 1929-04-20 |   88 | NULL    | NULL    |
+|          4 | Wiking1  | wiking  | 1930-02-22 |   22 | NULL    | Tytanic |
+|          5 | Wiking2  | wiking  | 1970-03-12 |   72 | NULL    | Tytanic |
+|          6 | Wiking3  | wiking  | 1970-03-12 |   72 | NULL    | Tytanic |
+|          7 | Wiking4  | wiking  | 1970-03-12 |   72 | NULL    | Tytanic |
+|          8 | Wiking5  | wiking  | 1970-03-12 |   72 | NULL    | Tytanic |
++------------+----------+---------+------------+------+---------+---------+
+8 rows in set (0.00 sec)
+
+mysql> DELETE FROM izba WHERE nazwa_izby='spizarnia';
+Query OK, 1 row affected (0.11 sec)
+
+mysql> SELECT * FROM izba;
+Empty set (0.00 sec)
+
+mysql> DROP TABLE izba;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql>
