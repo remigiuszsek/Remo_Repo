@@ -1,0 +1,49 @@
+lab 07
+zad2
+
+select rodzaj, count(*) from kreatura group by rodzaj;
+from kreatura group by rodzaj;
+
+krok1 identyfikacja niezbednych tabel
+krok2 złączenie tabel
+krok 3 dodanie warunków/filtrów
+krok 4 dodanie agregacji, grupowania
+krok 5 sortowanie, limit itp.
+
+select w.nazwa, count(u.id_uczestnika) group_concat(k.nazwa) from wyprawa w 
+inner join uczestnicy u on w.id_wyprawy=u.id_wyprawy
+inner join kreatura k on k.idKreatury= u.id_wyprawy
+group by w.id_wyprawy;
+
+select count(id_uczestnika) from ????
+
+select w.data_rozpoczecia,
+k.nazwa,
+from kreatura kreatura k 
+innej join wyprawa w on w.kierownik=k.idKreatury
+inner join etapy_wyprawy ew on ew.idWyprawy=w.id_wyprawy
+inner join sektor s on ew.sektor=s.id_sektora
+order by w.data_rozpoczecia , ew.kolejnosc;
+
+select * from sektor sektor
+left join etapy_wyprawy ew on s.id_sektora=ew.sektor;
+
+select idEtapu length(dziennik) from etapy_wyprawy;
+
+select idWyprawy, length(dziennik)
+from etapy_wyprawy having length(dziennik) < 400;
+
+select idWyprawy, sum(length(dziennik)) suma_dlugosci 
+from etapy_wyprawy group by idWyprawy 
+having suma_dlugosci < 400;
+
+
+
+
+
+
+
+
+
+
+
