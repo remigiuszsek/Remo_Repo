@@ -395,3 +395,91 @@ Query OK, 4 rows affected (2.50 sec)
 Records: 4  Duplicates: 0  Warnings: 0
 
 mysql>
+
+---------------------------------------------------------
+CZĘŚĆ 2 
+---------------------------------------------------------
+login as: sekr
+sekr@uwm-a008-36.uwm.edu.pl's password:
+Linux bad2 4.10.17-1-pve #1 SMP PVE 4.10.17-16 (Tue, 11 Jul 2017 09:55:44 +0200)                                                                    x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Thu Dec  2 13:18:20 2021 from 213.184.8.153
+sekr@bad2:~$ mysql -u sekr -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'sekr'@'localhost' (using password: Y                                                                   ES)
+sekr@bad2:~$ mysql -u sekr -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2970
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
+mysql> use sekr;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> mysql> ALTER TABLE marynarz ADD FOREIGN KEY (statek) REFERENCES statek(nazwa_statku);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL serve                                    r version for the right syntax to use near 'statek) REFERENCES statek(nazwa_statku)' at line 1
+mysql> ALTER TABLE marynarz ADD FOREIGN KEY (statek) REFERENCES statek(nazwa_statku);
+Query OK, 4 rows affected (2.83 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM postac;
++------------+---------------------+---------+------------+------+--------------------+---------+-------------+
+| id_postaci | nazwa               | rodzaj  | data_ur    | wiek | funkcja            | statek  | pesel       |
++------------+---------------------+---------+------------+------+--------------------+---------+-------------+
+|          5 | Loko                | waz     | 0992-02-21 | 1233 | atakowanie statkow | NULL    | 12345678578 |
+|          1 | Gertruda Nieszczera | syrena  | 1999-02-10 |  200 | NULL               | Tytanic | 12345678674 |
+|          2 | Drozd               | ptak    | 1992-12-21 |   44 | NULL               | Tytanic | 12345678675 |
+|          3 | Tesciowa            | kobieta | 1929-04-20 |   88 | NULL               | Tytanic | 12345678676 |
+|          4 | Bjorn               | wiking  | 1930-02-22 |   22 | NULL               | Tytanic | 12345678677 |
++------------+---------------------+---------+------------+------+--------------------+---------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE postac SET statek = default WHERE statek IS NOT NULL;
+Query OK, 4 rows affected (0.05 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> TRUNCATE table statek;
+ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`sekr`.`postac`, CONSTRAINT `postac_ibfk_1`)
+mysql> ALTER TABLE postac DROP FOREIGN KEY postac_ibfk_1;
+Query OK, 0 rows affected (0.23 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> TRUNCATE table statek;
+ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`sekr`.`marynarz`, CONSTRAINT `marynarz_ibfk_1`)
+mysql> ALTER TABLE postac DROP FOREIGN KEY marynarz_ibfk_1;
+ERROR 1091 (42000): Can't DROP 'marynarz_ibfk_1'; check that column/key exists
+mysql> ALTER TABLE marynarz DROP FOREIGN KEY marynarz_ibfk_1;
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> TRUNCATE table statek;
+Query OK, 0 rows affected (0.80 sec)
+
+mysql> DROP TABLE statek;
+Query OK, 0 rows affected (0.26 sec)
+
+mysql> CREATE TABLE zwierz (id int PRIMARY KEY auto_increment, nazwa varchar(30), wiek int);
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> INSERT INTO zwierz SELECT id_postaci, nazwa, wiek FROM postac WHERE rodzaj = "syrena" or rodzaj = "ptak" or rodzaj is null;
+Query OK, 2 rows affected (0.05 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql>
