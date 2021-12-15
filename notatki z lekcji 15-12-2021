@@ -1,0 +1,42 @@
+select nazwa, length(nazwa) from kreatura;
+
+// co to jest tablica Uni code
+// dowiedziec się więcej o ASCII
+
+select length("  ") + length(rodzaj) from kreatura;
+select length(concat(nazwa,rodzaj)) form kreatura; //concat buduje łańcuch znaków / zwraca łańcuch znaków
+
+select length(nazwa + rodzaj) from kreatura; // to nie zadziała bo operator dodawania nie wykonuje konkatenacji łańcuchu znaków i wtedy length nie zwróci odpowiedniej wartości
+
+select nazwa + rodzaj from kreatura; // ?
+
+select char_length("  ");
+
+Zadanie 4.2 - wartość oczekiwana
+
+#id_wyprawy, srednia
+
+'1', '2.800000'
+'3', '12.516667'
+'2', '14.814286'
+
+//wejsciowka 3_03
+(select nazwa, dataUrodzenia from kreatura order by dataUr desc limit 3) as k order by k.dataUr ASC;
+
+Zad 4.2 rozwiązanie
+select * from uczestnicy uczestnicy u 
+innej join wyprawa w on w.id_wyprawy = u.id_wyprawy
+inner join ekwipunek e on e.idKreatury = u.id_uczestnika
+inner join zason z on z.idZasobu=e.idZasobu;
+inner join kreatura k on k.idKreatury=u.id_uczestnika;
+inner join ekwipunek e on e.idKreatury=k.idKreatury;
+inner join zasob z on z.idZasobu=e.idZasobu;
+
+select w.nazwa, sum(e.ilosc*z.waga),/ count(distinct u.id_uczestnika) from?? u 
+left join wyprawa w on w.id_wyprawy = u.id_wyprawy
+# inner join ekwipunek e on e.idKreatury = u.id_uczestnika
+left join zason z on z.idZasobu=e.idZasobu;
+left join kreatura k on k.idKreatury=u.id_uczestnika;
+left join ekwipunek e on e.idKreatury=k.idKreatury;
+left join zasob z on z.idZasobu=e.idZasobu;
+group by w.id_wyprawy;
