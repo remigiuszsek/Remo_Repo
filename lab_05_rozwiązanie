@@ -1,1 +1,145 @@
+login as: sekr
+sekr@uwm-a008-36.uwm.edu.pl's password:
+Linux bad2 4.10.17-1-pve #1 SMP PVE 4.10.17-16 (Tue, 11 Jul 2017 09:55:44 +0200)                                             x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Wed Dec 15 14:16:20 2021 from 213.184.8.151
+sekr@bad2:~$ mysql -u sekr -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2994
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE TABLE kreatura SELECT * FROM wikingowie.kreatura;
+ERROR 1046 (3D000): No database selected
+mysql> use sekr;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+^[[ADatabase changed
+mysql> use sekr;
+Database changed
+mysql> CREATE TABLE kreatura SELECT * FROM wikingowie.kreatura;
+Query OK, 19 rows affected (0.77 sec)
+Records: 19  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE zasob SELECT * FROM wikingowie.zasob;
+Query OK, 28 rows affected, 1 warning (0.32 sec)
+Records: 28  Duplicates: 0  Warnings: 1
+
+mysql> CREATE TABLE ekwipunek SELECT * FROM wikingowie.ekwipunek;
+Query OK, 28 rows affected (0.29 sec)
+Records: 28  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------+
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj             |
++----------+-------------------+--------+-------+----------------+--------------------+
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie           |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie          |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie           |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie           |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie           |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie           |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie           |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie           |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie           |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL               |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL               |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL               |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL               |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie            |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie            |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie            |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie            |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni  |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni  |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni  |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL               |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL               |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL               |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie           |
++----------+-------------------+--------+-------+----------------+--------------------+
+28 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob WHERE rodzaj = "jedzenie";
++----------+----------+--------+-------+----------------+----------+
+| idZasobu | nazwa    | waga   | ilosc | dataPozyskania | rodzaj   |
++----------+----------+--------+-------+----------------+----------+
+|        1 | kokos    |   2.00 |     3 | 2007-07-23     | jedzenie |
+|        3 | kokos    |   4.00 |     1 | 2004-09-03     | jedzenie |
+|        4 | kokos    |   7.00 |     2 | 2010-10-13     | jedzenie |
+|        5 | banan    |   2.00 |    12 | 2015-11-09     | jedzenie |
+|        6 | figa     |   1.00 |    30 | 2001-12-14     | jedzenie |
+|        7 | krokodyl | 100.00 |     1 | 2005-07-14     | jedzenie |
+|        8 | bataty   |   1.00 |    30 | 2002-07-01     | jedzenie |
+|        9 | opos     |  12.00 |     2 | 2006-08-01     | jedzenie |
+|       28 | banan    |   1.00 |     7 | 2008-08-21     | jedzenie |
++----------+----------+--------+-------+----------------+----------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT idZasobu, nazwa FROM zasob WHERE idZasobu IN(3, 5, 7);
++----------+----------+
+| idZasobu | nazwa    |
++----------+----------+
+|        3 | kokos    |
+|        5 | banan    |
+|        7 | krokodyl |
++----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM kreatura WHERE rodzaj != "wiedzma" and udzwig > 50;
++------------+-----------+--------+------------+------+--------+
+| idKreatury | nazwa     | rodzaj | dataUr     | waga | udzwig |
++------------+-----------+--------+------------+------+--------+
+|          1 | Bjorn     | wiking | 1670-04-01 |   99 |     80 |
+|          2 | Brutal    | wiking | 1672-12-24 |  120 |     85 |
+|          3 | Khorad    | wiking | 1671-07-15 |  105 |     81 |
+|          4 | Birgun    | wiking | 1675-05-11 |   88 |     66 |
+|          5 | Defgard   | wiking | 1674-07-05 |  100 |     72 |
+|          7 | Ibra      | wiking | 1674-02-03 |  105 |     87 |
+|          8 | Bjolkolur | wiking | 1676-03-30 |  110 |     93 |
+|         13 | Szczeki   | ryba   | 1674-04-06 | 2100 |    600 |
+|         16 | Dziadek   | wiking | 1645-01-23 |   54 |    100 |
++------------+-----------+--------+------------+------+--------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob WHERE waga between 2 and 5;
++----------+-------------------+------+-------+----------------+--------------------+
+| idZasobu | nazwa             | waga | ilosc | dataPozyskania | rodzaj             |
++----------+-------------------+------+-------+----------------+--------------------+
+|        1 | kokos             | 2.00 |     3 | 2007-07-23     | jedzenie           |
+|        3 | kokos             | 4.00 |     1 | 2004-09-03     | jedzenie           |
+|        5 | banan             | 2.00 |    12 | 2015-11-09     | jedzenie           |
+|       14 | buty              | 2.00 |     2 | 2010-08-15     | ubranie            |
+|       18 | topor             | 3.00 |     1 | 2000-01-25     | narzedzie zbrodni  |
+|       19 | dzida             | 2.00 |    10 | 2001-03-21     | narzedzie zbrodni  |
+|       23 | hamak             | 2.00 |     1 | 2001-01-17     | miejsce wypoczynku |
+|       24 | chatka na drzewie | 2.00 |     1 | 2012-08-17     | miejsce wypoczynku |
+|       25 | nie wiadomo co    | 4.00 |     1 | 2001-08-10     | NULL               |
+|       27 | miotla            | 3.00 |     1 | 2005-10-10     | NULL               |
++----------+-------------------+------+-------+----------------+--------------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM kreatura WHERE nazwa LIKE "%or%" and udzwig between 30 and 70;
+Empty set (0.00 sec)
+
+mysql>
 
