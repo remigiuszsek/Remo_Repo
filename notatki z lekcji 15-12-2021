@@ -40,3 +40,6 @@ left join kreatura k on k.idKreatury=u.id_uczestnika;
 left join ekwipunek e on e.idKreatury=k.idKreatury;
 left join zasob z on z.idZasobu=e.idZasobu;
 group by w.id_wyprawy;
+
+github.com/kropiak/zti_bazy
+
